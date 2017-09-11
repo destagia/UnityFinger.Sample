@@ -1,16 +1,24 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityFinger;
 
+public class Sample : MonoBehaviour
+{
+    void Start()
+    {
+        var manager = FingerManager.Instance;
 
-public class Sample : MonoBehaviour {
-	// Use this for initialization
-	void Start () {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+        manager.AddOnScreenListener(position => Debug.Log(position));
+
+        manager.AddOnDragStartListener(dragInfo => {
+            Debug.LogFormat("DragStart: {0}", dragInfo.position);
+        });
+
+        manager.AddOnDragListener(dragInfo => {
+            Debug.LogFormat("Drag: {0}", dragInfo.position);
+        });
+
+        manager.AddOnDragEndListener(dragInfo => {
+            Debug.LogFormat("DragEnd: {0}", dragInfo.position);
+        });
+    }
 }
