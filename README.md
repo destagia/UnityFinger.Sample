@@ -8,16 +8,18 @@ using UnityFinger;
 
 public class Sample : MonoBehaviour
 {
+    ScreenInputBase input;
     FingerObserverSupervisor supervisor;
     FingerEventManager manager;
 
     void Start()
     {
-        var input = new EditorInput();
-        supervisor = new FingerObserverSupervisor(input);
-        manager = new FingerEventManager(supervisor);
+        input = new EditorInput();
 
-        manager.AddOnScreenListener(position => Debug.Log(position));
+        supervisor = new FingerObserverSupervisor(input);
+        manager = new FingerEventManager(supervisor, new DefaultFingerObserverConfig());
+
+        manager.AddOnScreenListener(p => Debug.Log(p));
 
         manager.AddOnDragStartListener(dragInfo => {
             Debug.LogFormat("DragStart: {0}", dragInfo.position);
@@ -30,10 +32,13 @@ public class Sample : MonoBehaviour
         manager.AddOnDragEndListener(dragInfo => {
             Debug.LogFormat("DragEnd: {0}", dragInfo.position);
         });
+
+        manager.AddOnLongTapListener(p => Debug.Log(p));
     }
 
     void Update()
     {
+        input.Update();
         supervisor.Update();
     }
 }
