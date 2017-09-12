@@ -3,19 +3,38 @@
 this is the just usage!
 
 ```
-var manager = FingerManager.Instance;
+using UnityEngine;
+using UnityFinger;
 
-manager.AddOnScreenListener(position => Debug.Log(position));
+public class Sample : MonoBehaviour
+{
+    FingerObserverSupervisor supervisor;
+    FingerEventManager manager;
 
-manager.AddOnDragStartListener(dragInfo => {
-Debug.LogFormat("DragStart: {0}", dragInfo.position);
-});
+    void Start()
+    {
+        var input = new EditorInput();
+        supervisor = new FingerObserverSupervisor(input);
+        manager = new FingerEventManager(supervisor);
 
-manager.AddOnDragListener(dragInfo => {
-Debug.LogFormat("Drag: {0}", dragInfo.position);
-});
+        manager.AddOnScreenListener(position => Debug.Log(position));
 
-manager.AddOnDragEndListener(dragInfo => {
-Debug.LogFormat("DragEnd: {0}", dragInfo.position);
-});
+        manager.AddOnDragStartListener(dragInfo => {
+            Debug.LogFormat("DragStart: {0}", dragInfo.position);
+        });
+
+        manager.AddOnDragListener(dragInfo => {
+            Debug.LogFormat("Drag: {0}", dragInfo.position);
+        });
+
+        manager.AddOnDragEndListener(dragInfo => {
+            Debug.LogFormat("DragEnd: {0}", dragInfo.position);
+        });
+    }
+
+    void Update()
+    {
+        supervisor.Update();
+    }
+}
 ```

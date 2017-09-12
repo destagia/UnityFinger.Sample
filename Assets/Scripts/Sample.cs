@@ -3,9 +3,14 @@ using UnityFinger;
 
 public class Sample : MonoBehaviour
 {
+    FingerObserverSupervisor supervisor;
+    FingerEventManager manager;
+
     void Start()
     {
-        var manager = FingerManager.Instance;
+        var input = new EditorInput();
+        supervisor = new FingerObserverSupervisor(input);
+        manager = new FingerEventManager(supervisor);
 
         manager.AddOnScreenListener(position => Debug.Log(position));
 
@@ -20,5 +25,10 @@ public class Sample : MonoBehaviour
         manager.AddOnDragEndListener(dragInfo => {
             Debug.LogFormat("DragEnd: {0}", dragInfo.position);
         });
+    }
+
+    void Update()
+    {
+        supervisor.Update();
     }
 }
