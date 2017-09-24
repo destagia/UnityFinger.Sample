@@ -50,5 +50,16 @@ public class Sample : MonoBehaviour
 
 ```
 $ git submodule update --init
-$ make publish_unity_finger
+```
+
+### Windows
+
+```
+$ nmake publish_win
+```
+
+### Mac OS
+
+```
+$ make publish_mac 
 ```
