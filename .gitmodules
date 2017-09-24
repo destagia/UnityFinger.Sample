@@ -1,0 +1,3 @@
+[submodule "UnityFinger/UnityFinger"]
+	path = UnityFinger/UnityFinger
+	url = https://github.com/tagia0212/UnityFinger.git
