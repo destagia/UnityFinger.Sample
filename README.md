@@ -2,6 +2,8 @@
 
 this is the just usage!
 
+## Usage
+
 ```
 using UnityEngine;
 using UnityFinger;
@@ -42,4 +44,11 @@ public class Sample : MonoBehaviour
         supervisor.Update();
     }
 }
+```
+
+## Build
+
+```
+$ git submodule update --init
+$ make publish_unity_finger
 ```
