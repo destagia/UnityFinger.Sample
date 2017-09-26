@@ -17,15 +17,15 @@ public class Sample : MonoBehaviour
         manager.AddOnScreenListener(p => Debug.Log(p));
 
         manager.AddOnDragStartListener(dragInfo => {
-            Debug.LogFormat("DragStart: {0}", dragInfo.position);
+            Debug.LogFormat("DragStart: {0}", dragInfo.Current);
         });
 
         manager.AddOnDragListener(dragInfo => {
-            Debug.LogFormat("Drag: {0}", dragInfo.position);
+            Debug.LogFormat("Drag: {0}", dragInfo.Current);
         });
 
         manager.AddOnDragEndListener(dragInfo => {
-            Debug.LogFormat("DragEnd: {0}", dragInfo.position);
+            Debug.LogFormat("DragEnd: {0}", dragInfo.Current);
         });
 
         manager.AddOnLongTapListener(p => Debug.Log(p));
